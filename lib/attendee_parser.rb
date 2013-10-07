@@ -3,6 +3,8 @@ class AttendeeParser
   attr_reader :attendees
   
   def parse_file(filename)
+    data = CSV.open(filename)
+
 
     a = Attendee.new(:first_name => "Sam",
                     :last_name => "Johnson",
