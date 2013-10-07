@@ -33,11 +33,11 @@ class RegistryTest < Minitest::Test
       Attendee.new(:last_name => "JoHNs")
     ]
 
-    attendees = reg.find_all_by_last_name("Sarah")
+    attendees = reg.find_all_by_last_name("johns")
 
     assert_equal 2, attendees.count
     attendees.each do |attendee|
-      assert_equal "sarah", attendee.last_name.downcase 
+      assert_equal "johns", attendee.last_name.downcase 
     end
   end 
 

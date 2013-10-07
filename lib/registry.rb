@@ -9,7 +9,7 @@ class Registry
   end
 
   def find_all_by_last_name(name)
-    attendees
+    attendees.find_all{|a| a.last_name.downcase == name.downcase}
   end
 
 
