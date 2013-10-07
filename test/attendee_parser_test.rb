@@ -11,13 +11,13 @@ class AttendeeParserTest < Minitest::Test
 
   def test_it_parses_a_data_file
     ap = AttendeeParser.new
-    attendees_parsed = ap.parse_file('/test/fixtures/partial_attendees.csv')
-    assert_equal 10, attendees_parsed
+    attendees_parsed = ap.parse_file('./test/fixtures/partial_attendees.csv')
+    assert_equal 9, attendees_parsed
   end
 
   def test_the_attendee_data_is_accessible
     ap = AttendeeParser.new
-    attendees_parsed = ap.parse_file('/test/fixtures/partial_attendees.csv')
+    attendees_parsed = ap.parse_file('./test/fixtures/partial_attendees.csv')
     attendee = ap.attendees.first
     assert_equal "Sam", attendee.first_name
     assert_equal "Johnson", attendee.last_name

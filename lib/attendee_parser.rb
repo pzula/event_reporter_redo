@@ -1,9 +1,11 @@
+require 'csv'
+
 class AttendeeParser
 
   attr_reader :attendees
   
   def parse_file(filename)
-    data = CSV.open(filename)
+    data = CSV.open(filename, :headers => true)
 
 
     a = Attendee.new(:first_name => "Sam",
@@ -16,7 +18,7 @@ class AttendeeParser
                     :zipcode => "80204")
 
     @attendees = [a]
-    10
+    data.read.count
   end
 
 end
