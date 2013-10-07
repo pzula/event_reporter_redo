@@ -18,7 +18,7 @@ class AttendeeParser
                       :zipcode => line[:zipcode])
     end
 
-    @attendees = count
+    @attendees.count
     data.rewind
     data.read.count
   end
