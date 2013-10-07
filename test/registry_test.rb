@@ -5,19 +5,19 @@ require './lib/registry'
 require './lib/attendee'
 
 class RegistryTest < Minitest::Test 
-  def test_it_exists
-    assert Registry
+  attr_reader :registry
+
+  def setup
+    @registry = Registry.new
   end
 
-  def test_it_finds_attendees_by_first_name
-    reg = Registry.new
-    reg.attendees = [
+  def test_it_finds_attendees_by_first_name_irrespective_of_case
+    registry.attendees = [
       Attendee.new(:first_name => "SaRah"),
       Attendee.new(:first_name => "sarah"),
       Attendee.new(:first_name => "Billy")
     ]
-
-    attendees = reg.find_all_by_first_name("Sarah")
+    attendees = registry.find_all_by_first_name("Sarah")
 
     assert_equal 2, attendees.count
     attendees.each do |attendee|
@@ -26,14 +26,13 @@ class RegistryTest < Minitest::Test
   end 
 
   def test_it_finds_attendees_by_last_name
-    reg = Registry.new
-    reg.attendees = [
+    registry.attendees = [
       Attendee.new(:last_name => "Johns"),
       Attendee.new(:last_name => "Smith"),
       Attendee.new(:last_name => "JoHNs")
     ]
 
-    attendees = reg.find_all_by_last_name("johns")
+    attendees = registry.find_all_by_last_name("johns")
 
     assert_equal 2, attendees.count
     attendees.each do |attendee|
