@@ -5,7 +5,7 @@ class AttendeeParser
   attr_reader :attendees
   
   def parse_file(filename)
-    data = CSV.open(filename, :headers => true)
+    data = CSV.open(filename, :headers => true, :header_converters => :symbol)
 
     raise date.readline.inspect
 
