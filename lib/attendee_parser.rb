@@ -7,18 +7,19 @@ class AttendeeParser
   def parse_file(filename)
     data = CSV.open(filename, :headers => true, :header_converters => :symbol)
 
-    raise date.readline.inspect
+    line = data.readline
 
-    # a = Attendee.new(:first_name => "Sam",
-    #                 :last_name => "Johnson",
-    #                 :email => "sam@gmail.com",
-    #                 :home_phone => "720-888-888",
-    #                 :street => "123 First Street",
-    #                 :city => "Denver",
-    #                 :state => "CO",
-    #                 :zipcode => "80204")
+    a = Attendee.new(:first_name => line[:first_name],
+                    :last_name => line[:last_name],
+                    :email => line[:email_address],
+                    :home_phone => line[:homephone],
+                    :street => line[:street],
+                    :city => line[:city],
+                    :state => line[:state],
+                    :zipcode => line[:zipcode])
 
     @attendees = [a]
+    data.rewind
     data.read.count
   end
 
