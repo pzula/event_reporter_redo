@@ -5,11 +5,13 @@ class AttendeeParser
   attr_reader :attendees
   
   def parse_file(filename)
-    data = CSV.open(filename, :headers => true, :header_converters => :symbol)
-
+    data = open_file(filename)
     @attendees = data.collect {|line| build_attendees(line) }
-
     @attendees.count
+  end
+
+  def open_file(filename)
+    CSV.open(filename, :headers => true, :header_converters => :symbol)
   end
 
   def build_attendees(line)
