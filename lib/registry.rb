@@ -12,5 +12,9 @@ class Registry
     attendees.find_all{|a| a.last_name.downcase == name.downcase}
   end
 
+  def find_all_by_email(email)
+    attendees.find_all{|a| a.email.downcase == email.downcase}
+  end
+
 
 end
