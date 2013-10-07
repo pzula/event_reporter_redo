@@ -5,10 +5,6 @@ require './lib/attendee_parser'
 
 class AttendeeParserTest < Minitest::Test 
 
-  def test_it_exists
-    assert AttendeeParser
-  end
-
   def test_it_parses_a_data_file
     ap = AttendeeParser.new
     attendees_parsed = ap.parse_file('./test/fixtures/partial_attendees.csv')
