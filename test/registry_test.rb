@@ -12,8 +12,8 @@ class RegistryTest < Minitest::Test
   def test_it_finds_attendees_by_first_name
     reg = Registry.new
     reg.attendees = [
-      Attendee.new(:first_name => "Sarah"),
-      Attendee.new(:first_name => "Sarah"),
+      Attendee.new(:first_name => "SaRah"),
+      Attendee.new(:first_name => "sarah"),
       Attendee.new(:first_name => "Billy")
     ]
     attendees = reg.find_all_by_first_name("Sarah")
