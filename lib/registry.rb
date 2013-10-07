@@ -16,5 +16,9 @@ class Registry
     attendees.find_all{|a| a.email.downcase == email.downcase}
   end
 
+  def find_all_by_phone(home_phone)
+    attendees.find_all{|a|
+     a.home_phone.gsub(/\D/, "") == home_phone.gsub(/\D/, "")}
+  end
 
 end

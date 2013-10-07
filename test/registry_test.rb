@@ -55,5 +55,22 @@ class RegistryTest < Minitest::Test
     end
   end
 
+  def test_it_finds_attendees_by_phone
+    registry.attendees = [
+      Attendee.new(:home_phone => "333-222-2323"),
+      Attendee.new(:home_phone => "3332222323"),
+      Attendee.new(:home_phone => "333.222.2323"),
+      Attendee.new(:home_phone => "(333)222-2323"),
+      Attendee.new(:home_phone => "(333) 222.2323"),
+      Attendee.new(:home_phone => "720-333-3424")
+    ]
+
+    attendees = registry.find_all_by_phone("(333) 222.2323")
+
+    assert_equal 5, attendees.count
+    attendees.each do |attendee|
+      assert_equal "3332222323", attendee.home_phone.gsub(/\D/, "")
+    end
+  end
 
 end
