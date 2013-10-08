@@ -18,6 +18,10 @@ class CommandInterpreterTest < Minitest::Test
     def queue_print(order)
       "running queue print ordered by #{order}"
     end
+
+    def queue_count
+      "running queue count"
+    end
   end
 
   def test_it_accepts_a_load_instruction
@@ -35,6 +39,11 @@ class CommandInterpreterTest < Minitest::Test
   def test_it_prints_ordered_by_the_last_name
     result = ci.run("queue print by last_name")
     assert_equal "running queue print ordered by last_name", result
+  end
+
+  def test_it_counts_the_queue
+    result = ci.run("queue count")
+    assert_equal "running queue count", result
   end
 
 end
