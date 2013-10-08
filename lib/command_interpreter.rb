@@ -20,9 +20,15 @@ class CommandInterpreter
     # load file.csv
     parts = command.split
     instruction = parts[0]
-    filename = parts[1] || default_filename
 
-    runner.load(filename)
+    if instruction == "load"
+      filename = parts[1] || default_filename
+      runner.load(filename)
+    elsif instruction == "queue"
+      #Queue print
+      order = parts.last
+      runner.queue_print(order)
+    end
   end
 
 end
