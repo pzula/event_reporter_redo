@@ -29,4 +29,12 @@ class Registry
     attendees.find_all {|a| a.city.downcase == city.downcase}
   end
 
+  def find_all_by_state(state)
+    attendees.find_all {|a| a.state.downcase == state.downcase}
+  end
+
+  def find_all_by_zipcode(zipcode)
+    attendees.find_all {|a| a.zipcode.downcase == zipcode.downcase}
+  end
+
 end

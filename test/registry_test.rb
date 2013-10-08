@@ -104,5 +104,36 @@ class RegistryTest < Minitest::Test
     end
   end
 
+  def test_it_finds_attendees_by_state_irrespective_of_case
+    registry.attendees = [
+      Attendee.new(:state => "co"),
+      Attendee.new(:state => "CO"),
+      Attendee.new(:state => "cO"),
+      Attendee.new(:state => "Oh"),
+    ]
+
+    attendees = registry.find_all_by_state("Co")
+
+    assert_equal 3, attendees.count
+    attendees.each do |attendee|
+      assert_equal "co", attendee.state.downcase
+    end
+  end
+
+  def test_it_finds_attendees_by_zipcode
+    registry.attendees = [
+      Attendee.new(:zipcode => "44313"),
+      Attendee.new(:zipcode => "44313"),
+      Attendee.new(:zipcode => "88304")
+    ]
+
+    attendees = registry.find_all_by_zipcode("44313")
+
+    assert_equal 2, attendees.count
+    attendees.each do |attendee|
+      assert_equal "44313", attendee.zipcode
+    end
+  end
+
 
 end
