@@ -5,13 +5,13 @@ require './lib/registry'
 require './lib/printer'
 
 class PrinterTest < Minitest::Test
+  attr_reader :printer
 
-  def test_it_exists
-    assert Printer
+  def setup
+    @printer = Printer.new
   end
 
   def test_it_prints_a_header
-    printer = Printer.new
     expected_header = "LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE"
     assert_equal expected_header, printer.header
   end 
@@ -39,7 +39,6 @@ class PrinterTest < Minitest::Test
   end
 
   def test_it_prints_an_attendee
-    printer = Printer.new
     expected = "Schmoe  Joe  joe@example.com  80209  Denver  CO  123 First Street  202-555-5555"
     assert_equal expected, printer.format_attendee(attendee_joe)
   end
@@ -48,11 +47,14 @@ class PrinterTest < Minitest::Test
     attendees = [
               attendee_joe,
               attendee_jane]
-    printer = Printer.new
     expected1 = "Schmoe  Joe  joe@example.com  80209  Denver  CO  123 First Street  202-555-5555"
     expected2 = "Schmoe  Jane  jane@example.com  80209  Denver  CO  123 First Street  202-777-7777"
     expected = [expected1, expected2].join("\n")
     assert_equal expected, printer.format_attendees(attendees)
+  end
+
+  def test_it_has_a_print_attendees_method
+    assert printer.respond_to?(:print_attendees)
   end
 
 end
