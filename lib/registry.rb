@@ -21,4 +21,12 @@ class Registry
      a.home_phone.gsub(/\D/, "") == home_phone.gsub(/\D/, "")}
   end
 
+  def find_all_by_street(street)
+    attendees.find_all {|a| a.street.downcase == street.downcase}
+  end
+
+  def find_all_by_city(city)
+    attendees.find_all {|a| a.city.downcase == city.downcase}
+  end
+
 end

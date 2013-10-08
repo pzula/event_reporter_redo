@@ -55,7 +55,7 @@ class RegistryTest < Minitest::Test
     end
   end
 
-  def test_it_finds_attendees_by_phone
+  def test_it_finds_attendees_by_phone_irrespective_of_format
     registry.attendees = [
       Attendee.new(:home_phone => "333-222-2323"),
       Attendee.new(:home_phone => "3332222323"),
@@ -72,5 +72,37 @@ class RegistryTest < Minitest::Test
       assert_equal "3332222323", attendee.home_phone.gsub(/\D/, "")
     end
   end
+
+  def test_it_finds_attendees_by_street_address_irrespective_of_case
+    registry.attendees = [
+      Attendee.new(:street => "123 MaIn St."),
+      Attendee.new(:street => "123 main st."),
+      Attendee.new(:street => "530 Pebble Beach Rd.")
+    ]
+
+    attendees = registry.find_all_by_street("123 MAin St.")
+
+    assert_equal 2, attendees.count
+    attendees.each do |attendee|
+      assert_equal "123 main st.", attendee.street.downcase
+    end
+  end
+
+  def test_it_finds_attendees_by_city_irrespective_of_case
+    registry.attendees = [
+      Attendee.new(:city => "Denver"),
+      Attendee.new(:city => "denver"),
+      Attendee.new(:city => "DenVeR"),
+      Attendee.new(:city => "Cleveland"),
+    ]
+
+    attendees = registry.find_all_by_city("deNver")
+
+    assert_equal 3, attendees.count
+    attendees.each do |attendee|
+      assert_equal "denver", attendee.city.downcase
+    end
+  end
+
 
 end
