@@ -25,12 +25,16 @@ class CommandInterpreter
       filename = parts[1] || default_filename
       runner.load(filename)
     elsif instruction == "queue"
-      if parts[1] == "print"
-        order = parts.last
-        runner.queue_print(order)
-      elsif parts[1] == "count"
-        runner.queue_count
-      end
+      run_queue(parts[1..-1])
+    end
+  end
+
+  def run_queue(parts)
+    if parts.first == "print"
+      order = parts.last
+      runner.queue_print(order)
+    elsif parts.first == "count"
+      runner.queue_count
     end
   end
 
