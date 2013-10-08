@@ -15,6 +15,10 @@ class FakeCommandRunner
   def queue_count
     "running queue count"
   end
+
+  def queue_clear
+    "running queue clear"
+  end
 end
 
 class CommandInterpreterTest < Minitest::Test 
@@ -44,6 +48,11 @@ class CommandInterpreterTest < Minitest::Test
   def test_it_counts_the_queue
     result = ci.run("queue count")
     assert_equal "running queue count", result
+  end
+
+  def test_it_clears_the_queue
+    result = ci.run("queue clear")
+    assert_equal "running queue clear", result
   end
 
 end

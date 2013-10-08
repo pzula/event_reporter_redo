@@ -36,6 +36,8 @@ class CommandInterpreter
       runner.queue_print(order)
     when "count"
       runner.queue_count
+    when "clear"
+      runner.queue_clear
     end
   end
 
