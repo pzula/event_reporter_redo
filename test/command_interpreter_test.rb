@@ -11,7 +11,7 @@ class CommandInterpreterTest < Minitest::Test
 
   class FakeCommandRunner
     def load(filename)
-      [:load, "some_data.csv"]
+      "running load with #{filename}"
     end
   end
 
@@ -21,7 +21,7 @@ class CommandInterpreterTest < Minitest::Test
     command = "load some_data.csv"
     result = ci.run(command)
     
-    assert_equal [:load, "some_data.csv"], result
+    assert_equal "running load with some_data.csv", result
 
   end
 

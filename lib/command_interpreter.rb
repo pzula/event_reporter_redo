@@ -18,8 +18,6 @@ class CommandInterpreter
     instruction = parts[0]
     filename = parts[1]
 
-    [instruction.to_sym, filename]
-
     runner.load(filename)
   end
 
