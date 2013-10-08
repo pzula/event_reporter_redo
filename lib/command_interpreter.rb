@@ -30,13 +30,23 @@ class CommandInterpreter
   end
 
   def run_queue(fragments)
+    # case fragments.first
+    # when "print"
+    #   order = fragments.last
+    #   runner.queue_print(order)
+    # when "count"
+    #   runner.queue_count
+    # end
+
     case fragments.first
     when "print"
       order = fragments.last
-      runner.queue_print(order)
+      runner.send("queue_#{fragments.first}", order)
     when "count"
-      runner.queue_count
+      runner.send("queue_#{fragments.first}")
     end
+
+
   end
 
 end
