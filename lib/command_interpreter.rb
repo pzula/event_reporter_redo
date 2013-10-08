@@ -16,7 +16,7 @@ class CommandInterpreter
     # load file.csv
     parts = command.split
     instruction = parts[0]
-    filename = parts[1]
+    filename = parts[1] || "event_attendees.csv"
 
     runner.load(filename)
   end

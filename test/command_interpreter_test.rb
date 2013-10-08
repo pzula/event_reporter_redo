@@ -4,9 +4,10 @@ require 'minitest/pride'
 require './lib/command_interpreter'
 
 class CommandInterpreterTest < Minitest::Test 
+  attr_reader :ci
 
-  def test_it_exists
-    assert CommandInterpreter
+  def setup
+    @ci = CommandInterpreter.new(FakeCommandRunner)
   end
 
   class FakeCommandRunner
@@ -16,13 +17,15 @@ class CommandInterpreterTest < Minitest::Test
   end
 
   def test_it_accepts_a_load_instruction
-    ci = CommandInterpreter.new(FakeCommandRunner)
-
     command = "load some_data.csv"
     result = ci.run(command)
     
     assert_equal "running load with some_data.csv", result
+  end
 
+  def test_it_runs_load_without_a_filename
+    result = ci.run("load")
+    assert_equal "running load with event_attendees.csv", result
   end
 
 
