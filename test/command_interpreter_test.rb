@@ -9,15 +9,18 @@ class CommandInterpreterTest < Minitest::Test
     assert CommandInterpreter
   end
 
-  def test_it_accepts_a_load_instruction
-    # "load some_data.csv"
-    ci = CommandInterpreter.new
+  class FakeCommandRunner
+    def load(filename)
+      [:load, "some_data.csv"]
+    end
+  end
 
-    # Send "load some_data.csv" into ci
+  def test_it_accepts_a_load_instruction
+    ci = CommandInterpreter.new(FakeCommandRunner)
+
     command = "load some_data.csv"
     result = ci.run(command)
     
-    # Make sure it runs the load thing (from CommandRunner?)
     assert_equal [:load, "some_data.csv"], result
 
   end
