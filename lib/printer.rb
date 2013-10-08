@@ -18,11 +18,12 @@ class Printer
   end
 
   def format_attendees(attendees)
-    # call print attendee for each attendee
-    # join them with newlines
-
     attendees.collect{|a| format_attendee(a)}.join("\n")
   end
 
+  def print_attendees(attendees)
+    puts header
+    puts format_attendees(attendees)
+  end
 
 end
