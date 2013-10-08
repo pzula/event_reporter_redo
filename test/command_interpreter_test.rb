@@ -3,25 +3,25 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/command_interpreter'
 
+class FakeCommandRunner
+  def load(filename)
+    "running load with #{filename}"
+  end
+
+  def queue_print(order)
+    "running queue print ordered by #{order}"
+  end
+
+  def queue_count
+    "running queue count"
+  end
+end
+
 class CommandInterpreterTest < Minitest::Test 
   attr_reader :ci
 
   def setup
     @ci = CommandInterpreter.new(FakeCommandRunner)
-  end
-
-  class FakeCommandRunner
-    def load(filename)
-      "running load with #{filename}"
-    end
-
-    def queue_print(order)
-      "running queue print ordered by #{order}"
-    end
-
-    def queue_count
-      "running queue count"
-    end
   end
 
   def test_it_accepts_a_load_instruction
