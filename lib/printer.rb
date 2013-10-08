@@ -4,7 +4,7 @@ class Printer
     "LAST NAME  FIRST NAME  EMAIL  ZIPCODE  CITY  STATE  ADDRESS  PHONE"
   end
 
-  def print_attendee(attendee)
+  def format_attendee(attendee)
     [
       attendee.last_name,
       attendee.first_name,
@@ -17,11 +17,11 @@ class Printer
     ].join("  ")
   end
 
-  def print_attendees(attendees)
+  def format_attendees(attendees)
     # call print attendee for each attendee
     # join them with newlines
 
-    attendees.collect{|a| print_attendee(a)}.join("\n")
+    attendees.collect{|a| format_attendee(a)}.join("\n")
   end
 
 

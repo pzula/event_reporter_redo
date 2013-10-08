@@ -41,7 +41,7 @@ class PrinterTest < Minitest::Test
   def test_it_prints_an_attendee
     printer = Printer.new
     expected = "Schmoe  Joe  joe@example.com  80209  Denver  CO  123 First Street  202-555-5555"
-    assert_equal expected, printer.print_attendee(attendee_joe)
+    assert_equal expected, printer.format_attendee(attendee_joe)
   end
 
   def test_it_can_print_multiple_attendees
@@ -52,7 +52,7 @@ class PrinterTest < Minitest::Test
     expected1 = "Schmoe  Joe  joe@example.com  80209  Denver  CO  123 First Street  202-555-5555"
     expected2 = "Schmoe  Jane  jane@example.com  80209  Denver  CO  123 First Street  202-777-7777"
     expected = [expected1, expected2].join("\n")
-    assert_equal expected, printer.print_attendees(attendees)
+    assert_equal expected, printer.format_attendees(attendees)
   end
 
 end
