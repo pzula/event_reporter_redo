@@ -29,11 +29,12 @@ class CommandInterpreter
     end
   end
 
-  def run_queue(parts)
-    if parts.first == "print"
-      order = parts.last
+  def run_queue(fragments)
+    case fragments.first
+    when "print"
+      order = fragments.last
       runner.queue_print(order)
-    elsif parts.first == "count"
+    when "count"
       runner.queue_count
     end
   end
