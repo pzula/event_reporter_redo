@@ -12,11 +12,15 @@ class CommandInterpreter
     runner_class.new
   end
 
+  def default_filename
+    "event_attendees.csv"
+  end
+
   def run(command)
     # load file.csv
     parts = command.split
     instruction = parts[0]
-    filename = parts[1] || "event_attendees.csv"
+    filename = parts[1] || default_filename
 
     runner.load(filename)
   end
