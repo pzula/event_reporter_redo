@@ -20,7 +20,8 @@ class Printer
   def print_attendees(attendees)
     # call print attendee for each attendee
     # join them with newlines
-  
+
+    attendees.collect{|a| print_attendee(a)}.join("\n")
   end
 
 
