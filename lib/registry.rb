@@ -4,6 +4,10 @@ class Registry
 
   attr_accessor :attendees
 
+  def count
+    attendees.count
+  end
+
   def find_all_by_first_name(name)
     attendees.find_all{|a| a.first_name.downcase == name.downcase}
   end

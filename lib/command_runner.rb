@@ -17,9 +17,7 @@ class CommandRunner
   end
 
   def attendee_count
-    registry.attendees.count #Law of Demeter Violation
-    # When an object talks to its children to its children
-    # Peeking through Registry's internals
+    registry.count
   end
 
 end
