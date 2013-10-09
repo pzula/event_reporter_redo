@@ -27,7 +27,10 @@ class CommandRunner
 
   def queue_count
     queue.count
-    0
+  end
+
+  def find_attendees_by_first_name(name)
+    queue.add(registry.find_all_by_first_name(name))
   end
 
 end

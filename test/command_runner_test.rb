@@ -12,10 +12,15 @@ class CommandRunnerTest < Minitest::Test
   end
 
   def test_it_counts_the_queue_when_empty
-    skip
+    cr = CommandRunner.new
+    assert_equal 0, cr.queue_count
+  end
+
+  def test_it_counts_a_loaded_queue
     cr = CommandRunner.new
     cr.load("./test/fixtures/partial_attendees.csv")
-    assert_equal 0, cr.queue_count
+    cr.find_attendees_by_first_name("Sarah")
+    assert_equal 2, cr.queue_count
   end
 
 
