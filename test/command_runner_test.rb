@@ -31,6 +31,10 @@ class CommandRunnerTest < Minitest::Test
     assert_equal 1, cr.queue_count
     cr.find_attendees_by_last_name("Nguyen")
     assert_equal 1, cr.queue_count
+    cr.find_attendees_by_email("arannon@jumpstartlab.com")
+    assert_equal 1, cr.queue_count
+    cr.find_attendees_by_home_phone("6154385000")
+    assert_equal 1, cr.queue_count
   end
 
 

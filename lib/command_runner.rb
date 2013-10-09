@@ -41,11 +41,13 @@ class CommandRunner
     queue.replace(registry.find_all_by_last_name(name))
   end
 
-  # def find_attendees_by_email(email)
-  #   queue.replace(registry.find_all_by_last_name(name))
-  # end
+  def find_attendees_by_email(email)
+    queue.replace(registry.find_all_by_email(email))
+  end
 
-
+  def find_attendees_by_home_phone(phone)
+    queue.replace(registry.find_all_by_phone(phone))
+  end
 
 
 end
