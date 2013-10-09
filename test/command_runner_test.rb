@@ -23,6 +23,14 @@ class CommandRunnerTest < Minitest::Test
     assert_equal 2, cr.queue_count
   end
 
+  def test_it_replaces_queued_items_on_a_second_find
+    cr = CommandRunner.new
+    cr.load("./test/fixtures/partial_attendees.csv")
+    cr.find_attendees_by_first_name("Sarah")
+    cr.find_attendees_by_first_name("Audrey")
+    assert_equal 1, cr.queue_count
+  end
+
 
 
 end

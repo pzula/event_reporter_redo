@@ -30,7 +30,7 @@ class CommandRunner
   end
 
   def find_attendees_by_first_name(name)
-    queue.add(registry.find_all_by_first_name(name))
+    queue.replace(registry.find_all_by_first_name(name))
   end
 
 end
