@@ -35,6 +35,12 @@ class CommandRunnerTest < Minitest::Test
     assert_equal 1, cr.queue_count
     cr.find_attendees_by_home_phone("6154385000")
     assert_equal 1, cr.queue_count
+    cr.find_attendees_by_street("3155 19th St NW")
+    assert_equal 1, cr.queue_count
+    cr.find_attendees_by_city("Washington")
+    assert_equal 2, cr.queue_count
+    cr.find_attendees_by_zipcode("20009")
+    assert_equal 1, cr.queue_count
   end
 
 

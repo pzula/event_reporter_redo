@@ -29,10 +29,6 @@ class CommandRunner
     queue.count
   end
 
-  def attributes
-    %w[first_name last_name email home_phone street city state zipcode]
-  end
-
   def find_attendees_by_first_name(name)
     queue.replace(registry.find_all_by_first_name(name))
   end
@@ -49,5 +45,20 @@ class CommandRunner
     queue.replace(registry.find_all_by_phone(phone))
   end
 
+  def find_attendees_by_street(address)
+    queue.replace(registry.find_all_by_street(address))
+  end
+
+  def find_attendees_by_city(city)
+    queue.replace(registry.find_all_by_city(city))
+  end
+
+  def find_attendees_by_state(state)
+    queue.replace(registry.find_all_by_state(state))
+  end
+
+  def find_attendees_by_zipcode(zipcode)
+    queue.replace(registry.find_all_by_zipcode(zipcode))
+  end
 
 end
