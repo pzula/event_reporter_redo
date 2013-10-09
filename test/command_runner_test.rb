@@ -11,5 +11,13 @@ class CommandRunnerTest < Minitest::Test
     assert_equal 9, cr.attendee_count
   end
 
+  def test_it_counts_the_queue_when_empty
+    skip
+    cr = CommandRunner.new
+    cr.load("./test/fixtures/partial_attendees.csv")
+    assert_equal 0, cr.queue_count
+  end
+
+
 
 end
