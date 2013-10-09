@@ -19,6 +19,14 @@ class FakeCommandRunner
   def queue_clear
     "running queue clear"
   end
+
+  def queue_save(filename)
+    "saving the queue to #{filename}"
+  end
+
+  def help
+    "running help"
+  end
 end
 
 class CommandInterpreterTest < Minitest::Test 
@@ -53,6 +61,16 @@ class CommandInterpreterTest < Minitest::Test
   def test_it_clears_the_queue
     result = ci.run("queue clear")
     assert_equal "running queue clear", result
+  end
+
+  def test_it_can_save_to_filename
+    result = ci.run("queue save to some_file.csv")
+    assert_equal "saving the queue to some_file.csv", result
+  end
+
+  def test_it_runs_full_help_command
+    result = ci.run("help")
+    assert_equal "running help", result
   end
 
 end

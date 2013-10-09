@@ -26,6 +26,8 @@ class CommandInterpreter
       runner.load(filename)
     elsif instruction == "queue"
       run_queue(parts[1..-1])
+    elsif instruction == "help"
+      runner.help 
     end
   end
 
@@ -38,6 +40,9 @@ class CommandInterpreter
       runner.queue_count
     when "clear"
       runner.queue_clear
+    when "save"
+      filename = fragments.last
+      runner.queue_save(filename)
     end
   end
 
