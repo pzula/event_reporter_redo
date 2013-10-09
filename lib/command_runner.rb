@@ -12,6 +12,10 @@ class CommandRunner
     @registry ||= Registry.new
   end
 
+  def printer
+    @printer ||= Printer.new
+  end
+
   def queue
     @queue ||= Queue.new
   end
@@ -27,6 +31,14 @@ class CommandRunner
 
   def queue_count
     queue.count
+  end
+
+  def queue_print
+    printer.print_attendees(queue.data)
+  end
+
+  def queue_save
+    "wooooot"
   end
 
   def find_attendees_by_first_name(name)

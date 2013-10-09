@@ -43,6 +43,20 @@ class CommandRunnerTest < Minitest::Test
     assert_equal 1, cr.queue_count
   end
 
+  def test_it_prints_the_number_of_lines_in_the_queue
+    skip
+    cr = CommandRunner.new
+    cr.load("./test/fixtures/partial_attendees.csv")
+    cr.find_attendees_by_first_name("sarah")
+    assert_equal "wooot", cr.queue_print
+  end
+
+  def test_it_executes_the_queue_save_command
+    cr = CommandRunner.new
+    cr.load("./test/fixtures/partial_attendees.csv")
+    cr.find_attendees_by_first_name("sarah")
+    assert_equal "wooooot", cr.queue_save
+  end
 
 
 end
