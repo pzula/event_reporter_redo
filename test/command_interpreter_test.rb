@@ -36,6 +36,10 @@ class FakeCommandRunner
       "running help queue"
     end
   end
+
+  def find(attribute, criteria)
+    "finding #{attribute} with #{criteria}"
+  end
 end
 
 class CommandInterpreterTest < Minitest::Test 
@@ -85,6 +89,11 @@ class CommandInterpreterTest < Minitest::Test
   def test_it_runs_help_with_a_specified_command
     result = ci.run("help load")
     assert_equal "running help load", result
+  end
+
+  def test_it_runs_the_find_command
+    result = ci.run("find zipcode 20011")
+    assert_equal "finding zipcode with 20011", result
   end
 
 end

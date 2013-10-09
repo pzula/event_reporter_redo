@@ -29,6 +29,10 @@ class CommandInterpreter
     elsif instruction == "help"
       secondary_command = parts[1]
       runner.help(secondary_command)
+    elsif instruction == "find"
+      attribute = parts[1]
+      criteria = parts[2]
+      runner.find(attribute, criteria)
     end
   end
 
