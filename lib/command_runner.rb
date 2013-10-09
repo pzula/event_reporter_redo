@@ -17,7 +17,7 @@ class CommandRunner
   end
 
   def attendee_count
-    10
+    registry.attendees.count
   end
 
 end
