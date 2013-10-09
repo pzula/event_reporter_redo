@@ -29,6 +29,8 @@ class CommandRunnerTest < Minitest::Test
     cr.find_attendees_by_first_name("Sarah")
     cr.find_attendees_by_first_name("Audrey")
     assert_equal 1, cr.queue_count
+    cr.find_attendees_by_last_name("Nguyen")
+    assert_equal 1, cr.queue_count
   end
 
 
