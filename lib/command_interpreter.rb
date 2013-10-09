@@ -27,7 +27,8 @@ class CommandInterpreter
     elsif instruction == "queue"
       run_queue(parts[1..-1])
     elsif instruction == "help"
-      runner.help 
+      secondary_command = parts[1]
+      runner.help(secondary_command)
     end
   end
 

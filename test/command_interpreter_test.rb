@@ -24,8 +24,17 @@ class FakeCommandRunner
     "saving the queue to #{filename}"
   end
 
-  def help
-    "running help"
+  def help(secondary_command = nil)
+    case secondary_command 
+    when nil
+      "running help"
+    when "load"
+      "running help load"
+    when "find"
+      "running help find"
+    when "queue"
+      "running help queue"
+    end
   end
 end
 
@@ -71,6 +80,11 @@ class CommandInterpreterTest < Minitest::Test
   def test_it_runs_full_help_command
     result = ci.run("help")
     assert_equal "running help", result
+  end
+
+  def test_it_runs_help_with_a_specified_command
+    result = ci.run("help load")
+    assert_equal "running help load", result
   end
 
 end
