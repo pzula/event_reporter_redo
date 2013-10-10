@@ -1,5 +1,7 @@
+require './lib/command_runner'
+
 class CommandInterpreter
-  
+
   ## depencency injection allows dependcy to be specified at load time
 
   attr_reader :runner_class
