@@ -8,7 +8,6 @@ class WriterTest < Minitest::Test
   def test_it_takes_a_filename
     skip
     writer = Writer.new
-
     assert_equal "Writing to new-file.csv", writer.write_to("new-file.csv")
   end
 
