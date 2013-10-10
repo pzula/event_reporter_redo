@@ -2,8 +2,9 @@ require './lib/command_interpreter'
 
 class Prompt
 
-  def run
+  def self.run
     puts "Welcome to EventReporter!"
+    ci = CommandInterpreter.new
 
     input = nil
     while input != "exit"
@@ -13,8 +14,7 @@ class Prompt
 
       printf "enter command: "
       input = gets.chomp
-      ci = CommandInterpreter.new
-      ci.run(input)
+      puts ci.run(input)
     end
   end
 
@@ -22,5 +22,4 @@ class Prompt
 
 end
 
-p = Prompt.new
-p.run
+Prompt.run

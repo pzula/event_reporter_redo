@@ -4,14 +4,10 @@ class CommandInterpreter
 
   ## depencency injection allows dependcy to be specified at load time
 
-  attr_reader :runner_class
+  attr_reader :runner
 
   def initialize(runner_input = CommandRunner)
-    @runner_class = runner_input
-  end
-
-  def runner
-    runner_class.new
+    @runner = runner_input.new
   end
 
   def default_filename
@@ -32,17 +28,22 @@ class CommandInterpreter
       secondary_command = parts[1]
       runner.help(secondary_command)
     elsif instruction == "find"
-      attribute = parts[1]
-      criteria = parts[2]
-      runner.find(attribute, criteria)
+      attribute = parts[2]
+      criteria = parts[3]
+      runner.send("find_attendees_by_#{attribute}", criteria)
+    elsif instruction == "exit"
+      printf "Goodbye!"
+    else
+      printf "Sorry, I don't know how to run #{command}"
     end
   end
 
   def run_queue(fragments)
     case fragments.first
     when "print"
-      order = fragments.last
-      runner.queue_print(order)
+      # order = fragments.last
+      # runner.queue_print(order)
+      runner.queue_print
     when "count"
       runner.queue_count
     when "clear"

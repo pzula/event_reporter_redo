@@ -30,6 +30,7 @@ class CommandRunner
   def load(filename)
     parser.parse_file(filename)
     registry.attendees = parser.attendees
+    "Loaded #{registry.count} attendees."
   end
 
   def queue_data
