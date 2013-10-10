@@ -11,7 +11,7 @@ class CommandInterpreter
   end
 
   def default_filename
-    "event_attendees.csv"
+    "./data/event_attendees.csv"
   end
 
   def run(command)
